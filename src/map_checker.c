@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/09 12:55:11 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:28:34 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,14 @@ int	main(int ac, char **av)
 {
 	int	file;
 
-	ft_ber(av[1]);
-	file = open(av[1], O_RDONLY);
 	if (ac == 2)
 	{
+		ft_ber(av[1]);
+		file = open(av[1], O_RDONLY);
 		ft_map_checker(file);
+		close (file);
 	}
-	close (file);
+	else
+		ft_printf("Uso: ./so_long mapa.ber\n");
 	return (0);
 }

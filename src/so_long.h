@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/09 13:05:59 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:26:15 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 
 typedef struct s_res
 {
-	int	width;
-	int	height;
-	int	chest;
-	int	exit;
-	int	character;
-	int	character_y;
-	int	character_x;
+	int				width;
+	int				height;
+	int				chest;
+	int				exit;
+	int				character;
+	int				character_y;
+	int				character_x;
 	mlx_t			*mlx;
 	mlx_image_t		*floor_i;
 	mlx_image_t		*wall_i;

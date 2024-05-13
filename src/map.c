@@ -247,31 +247,27 @@ int main(int ac, char **av) {
     printf("Pos_y: %d\n", game->character_y);
 
     // Implementa la lógica para verificar si el mapa está rodeado por unos
-    surrounded = ft_borders(game->map, game);
-    if (surrounded) {
+    if (ft_borders(game->map, game)) {
         printf("El mapa está rodeado por unos.\n");
     } else {
         printf("El mapa no está rodeado por unos.\n");
     }
     // Implementa la lógica para verificar si el mapa tiene todos los caracteres necesarios
-    int collect = ft_objects(game->map, game);
-    if (collect) {
+    if (ft_objects(game->map, game)) {
         printf("El mapa tiene todos los caracteres necesarios.\n");
     } else {
         printf("El mapa no tiene todos los caracteres necesarios.\n");
     }
 
     // Implementa la lógica para verificar si el mapa tiene caracteres incorrectos
-    int enemy = ft_caracteres(game->map, game);
-    if (enemy) {
+    if (ft_caracteres(game->map, game)) {
         printf("El mapa no tiene caracteres incorrectos.\n");
     } else {
         printf("El mapa tiene caracteres incorrectos.\n");
     }
 
     // Implementa la lógica para verificar si el flood fill alcanza todos los objetivos
-    int reachable = check_floodfill(game, file);
-    if (reachable) {
+    if (check_floodfill(game, file)) {
         printf("El flood fill alcanza todos los objetivos.\n");
     } else {
         printf("El flood fill no alcanza todos los objetivos.\n");

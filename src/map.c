@@ -6,101 +6,59 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:43:16 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/09 12:52:27 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:41:17 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	read_file(int fd, int matrix[MAX_ROWS][MAX_COLS], t_res *dimensions)
+void	read_file(int fd, t_res *game)
 {
 	char	*line;
 	int		len;
-	int		i;
 
-	dimensions->height = 0;
+	game->height = 0;
+	game->map = malloc(MAX_ROWS * sizeof(char *));
 	line = get_next_line(fd);
-	while (dimensions->height < MAX_ROWS && line != NULL)
+	while (game->height < MAX_ROWS && line != NULL)
 	{
 		len = ft_strlen(line);
-		dimensions->width = len;
-		i = 0;
-		while (i < len)
+		game->width = len;
+		game->map[game->height] = malloc((len + 1) * sizeof(char));
+		if (game->map[game->height] == NULL)
 		{
-			matrix[dimensions->height][i] = line[i] - '0';
-			i++;
+			return ;
 		}
-		dimensions->height++;
+		ft_strlcpy(game->map[game->height], line, len + 1);
+		game->height++;
 		free(line);
 		line = get_next_line(fd);
 	}
 }
 
-int	ft_borders(int matrix[MAX_ROWS][MAX_COLS], t_res *dimensions)
+int	ft_borders(char	**matrix, t_res *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
 	j = 0;
-	while (i < dimensions->height)
+	while (i < game->height)
 	{
-		if (matrix[i][0] != 1 || matrix[i][dimensions->width - 1] != 1)
+		if (matrix[i][0] != 1 || matrix[i][game->width - 1] != 1)
 			return (0);
 		i++;
 	}
-	while (j < dimensions->width)
+	while (j < game->width)
 	{
-		if (matrix[0][j] != 1 || matrix[dimensions->height - 1][j] != 1)
+		if (matrix[0][j] != 1 || matrix[game->height - 1][j] != 1)
 			return (0);
 		j++;
 	}
 	return (1);
 }
 
-int	ft_rectangule(int matrix[MAX_ROWS][MAX_COLS], t_res *structa)
-{
-	int	i;
-	int	largo;
-
-	largo = structa->width;
-	while (i < largo)
-	{
-		if (structa->width != largo)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	ft_objects(int matrix[MAX_ROWS][MAX_COLS], t_res *structa)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < structa->height)
-	{
-		j = 0;
-		while (j < structa->width)
-		{
-			if (matrix[i][j] == 32)
-				structa->character++;
-			else if (matrix[i][j] == 19)
-				structa->chest++;
-			else if (matrix[i][j] == 21)
-				structa->exit++;
-			j++;
-		}
-		i++;
-	}
-	if (structa->character == 1 && structa->exit == 1 && structa->chest >= 1)
-		return (1);
-	else
-		return (0);
-}
-
-int	ft_caracteres(int matrix[MAX_ROWS][MAX_COLS], t_res *structa)
+int	ft_caracteres(char **matrix, t_res *structa)
 {
 	int	i;
 	int	j;
@@ -123,6 +81,37 @@ int	ft_caracteres(int matrix[MAX_ROWS][MAX_COLS], t_res *structa)
 	return (1);
 }
 
+void	floodfill(t_res *map_dup, int x, int y)
+{
+	if (x < 0 || y < 0 || y >= map_dup->height || x >= map_dup->width)
+		return ;
+	if (map_dup->map[y][x] == WALL)
+		return ;
+	if (map_dup->map[y][x] == COLLECT)
+		map_dup->chest++;
+	if (map_dup->map[y][x] == MAP_EXIT)
+		map_dup->exit++;
+	floodfill(map_dup, x, y - 1);
+	floodfill(map_dup, x, y + 1);
+	floodfill(map_dup, x - 1, y);
+	floodfill(map_dup, x + 1, y);
+}
+
+int	check_floodfill(t_res *game, int fd)
+{
+	t_res	*map_dup;
+
+	map_dup = init_game();
+	read_file(fd, map_dup);
+	ft_objects(map_dup->map, map_dup);
+	floodfill(map_dup, map_dup->character_x, map_dup->character_y);
+	if (map_dup->chest == game->chest && map_dup->exit == 1)
+	{
+		free_all(map_dup);
+		return (1);
+	}
+	return (0);
+}
 // void	print_matrix(int matrix[MAX_ROWS][MAX_COLS], res *dimensions)
 // {
 // 	ft_printf("Matriz:\n");
@@ -230,64 +219,64 @@ int	ft_caracteres(int matrix[MAX_ROWS][MAX_COLS], t_res *structa)
 // 	return (0);
 // }
 
-// int	main(int ac, char **av)
-// {
-// 	int	file;
-// 	int	matrix[MAX_ROWS][MAX_COLS];
-// 	res	dimensions;
-// 	int	surrounded;
-// 	int rectangular;
+int main(int ac, char **av) {
+    int file;
+    t_res *game;
+    int surrounded;
+    int rectangular;
 
-// 	ft_ber(av[1]);
-// 	file = open(av[1], O_RDONLY);
-// 	if (file == -1)
-// 	{
-// 		perror("Error al abrir archivo");
-// 		exit(EXIT_FAILURE);
-// 	}
-// 	read_file(file, matrix, &dimensions);
-// 	ft_character_pos(matrix, &dimensions);
-// 	ft_empty(matrix);
-// 	ft_printf("Ancho: %d\n", dimensions.width);
-// 	ft_printf("Altura: %d\n", dimensions.height);
-// 	ft_printf("Pos_X: %d\n", dimensions.character_x);
-// 	ft_printf("Pos_y: %d\n", dimensions.character_y);
-// 	print_matrix(matrix, &dimensions);
-// 	surrounded = ft_borders(matrix, &dimensions);
-// 	if (surrounded)
-// 	{
-// 		ft_printf("La matriz está rodeada por unos.\n");
-// 	}
-// 	else
-// 	{
-// 		ft_printf("La matriz no está rodeada por unos.\n");
-// 	}
-// 	rectangular = ft_rectangule(matrix, &dimensions);
-// 	if (rectangular)
-// 	{
-// 		ft_printf("La matriz es rectangular.\n");
-// 	}
-// 	else
-// 	{
-// 		ft_printf("La matriz no es resctangular.\n");
-// 	}
-// 	int collect = ft_objects(matrix, &dimensions);
-// 	if (collect)
-// 	{
-// 		ft_printf("La matriz tiene todos los caract.\n");
-// 	}
-// 	else
-// 	{
-// 		ft_printf("La matriz no tiene todos los carac.\n");
-// 	}
-// 	int enemy = ft_caracteres(matrix, &dimensions);
-// 	if (enemy)
-// 	{
-// 		ft_printf("La matriz es correcta.\n");
-// 	}
-// 	else
-// 	{
-// 		ft_printf("La matriz no es correcta.\n");
-// 	}
-// 	return (0);
-// }
+    ft_ber(av[1]);
+    file = open(av[1], O_RDONLY);
+    if (file == -1) {
+        perror("Error al abrir archivo");
+        exit(EXIT_FAILURE);
+    }
+
+    // Llama a la función para leer el archivo y llenar la estructura 'game'
+    read_file(file, game);
+
+    // Implementa la lógica para encontrar la posición del personaje en el mapa
+    ft_character_pos(game->map, game);
+
+    // Implementa la lógica para verificar si el mapa está vacío
+    ft_empty(game->map);
+
+    printf("Ancho: %d\n", game->width);
+    printf("Altura: %d\n", game->height);
+    printf("Pos_X: %d\n", game->character_x);
+    printf("Pos_y: %d\n", game->character_y);
+
+    // Implementa la lógica para verificar si el mapa está rodeado por unos
+    surrounded = ft_borders(game->map, game);
+    if (surrounded) {
+        printf("El mapa está rodeado por unos.\n");
+    } else {
+        printf("El mapa no está rodeado por unos.\n");
+    }
+    // Implementa la lógica para verificar si el mapa tiene todos los caracteres necesarios
+    int collect = ft_objects(game->map, game);
+    if (collect) {
+        printf("El mapa tiene todos los caracteres necesarios.\n");
+    } else {
+        printf("El mapa no tiene todos los caracteres necesarios.\n");
+    }
+
+    // Implementa la lógica para verificar si el mapa tiene caracteres incorrectos
+    int enemy = ft_caracteres(game->map, game);
+    if (enemy) {
+        printf("El mapa no tiene caracteres incorrectos.\n");
+    } else {
+        printf("El mapa tiene caracteres incorrectos.\n");
+    }
+
+    // Implementa la lógica para verificar si el flood fill alcanza todos los objetivos
+    int reachable = check_floodfill(game, file);
+    if (reachable) {
+        printf("El flood fill alcanza todos los objetivos.\n");
+    } else {
+        printf("El flood fill no alcanza todos los objetivos.\n");
+    }
+
+    close(file);
+    return 0;
+}

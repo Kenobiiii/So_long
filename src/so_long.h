@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/11 19:45:33 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/13 12:39:03 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,16 @@
 
 # define MAX_ROWS 100
 # define MAX_COLS 100
+# define IMG			64
+# define WALL				1
+# define FLOOR 				0
+# define COLLECT  			19
+# define PLAYER				32
+# define MAP_EXIT 		 	21
 
 typedef struct s_res
 {
+	char			**map;
 	int				width;
 	int				height;
 	int				chest;
@@ -47,12 +54,23 @@ typedef struct s_res
 }	t_res;
 
 //void
-void	read_file(int fd, int matrix[MAX_ROWS][MAX_COLS], t_res *dimensions);
+void		read_file(int fd, t_res *dimensions);
+void		free_all(t_res	*juego);
+void		free_matriz(char **matriz, t_res	*game);
+void		floodfill(t_res *map_dup, int x, int y);
+void		ft_ber(char	*str);
+void		ft_character_pos(char **matrix, t_res *structa);
+void		ft_empty(char **matrix);
+
 
 //int
-int		ft_borders(int matrix[MAX_ROWS][MAX_COLS], t_res *dimensions);
-int		ft_rectangule(int matrix[MAX_ROWS][MAX_COLS], t_res *structa);
-int		ft_objects(int matrix[MAX_ROWS][MAX_COLS], t_res *structa);
-int		ft_caracteres(int matrix[MAX_ROWS][MAX_COLS], t_res *structa);
+int			ft_borders(char **matrix, t_res *dimensions);
+int			ft_rectangule(char **matrix, t_res *structa);
+int			ft_objects(char **matrix, t_res *structa);
+int			ft_caracteres(char **matrix, t_res *structa);
+int			check_floodfill(t_res *game, int fd);
+
+//structs
+t_res	*init_game(void);
 
 #endif

@@ -5,7 +5,7 @@ CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 
 USER		= paromero
-SRCS		= src/map.c src/map_checker.c
+SRCS		= src/map.c src/map_checker.c src/ft_free.c src/asd.c
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I ./libft -I/opt/X11/include -IMLX42
 MLX42 = ./MLX42

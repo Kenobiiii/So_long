@@ -219,60 +219,60 @@ int	check_floodfill(t_res *game, int fd)
 // 	return (0);
 // }
 
-int main(int ac, char **av) {
-    int file;
-    t_res *game;
-    int surrounded;
-    int rectangular;
+// int main(int ac, char **av) {
+//     int file;
+//     t_res *game;
+//     int surrounded;
+//     int rectangular;
 
-    ft_ber(av[1]);
-    file = open(av[1], O_RDONLY);
-    if (file == -1) {
-        perror("Error al abrir archivo");
-        exit(EXIT_FAILURE);
-    }
+//     ft_ber(av[1]);
+//     file = open(av[1], O_RDONLY);
+//     if (file == -1) {
+//         perror("Error al abrir archivo");
+//         exit(EXIT_FAILURE);
+//     }
 
-    // Llama a la función para leer el archivo y llenar la estructura 'game'
-    read_file(file, game);
+//     // Llama a la función para leer el archivo y llenar la estructura 'game'
+//     read_file(file, game);
 
-    // Implementa la lógica para encontrar la posición del personaje en el mapa
-    ft_character_pos(game->map, game);
+//     // Implementa la lógica para encontrar la posición del personaje en el mapa
+//     ft_character_pos(game->map, game);
 
-    // Implementa la lógica para verificar si el mapa está vacío
-    ft_empty(game->map);
+//     // Implementa la lógica para verificar si el mapa está vacío
+//     ft_empty(game->map);
 
-    printf("Ancho: %d\n", game->width);
-    printf("Altura: %d\n", game->height);
-    printf("Pos_X: %d\n", game->character_x);
-    printf("Pos_y: %d\n", game->character_y);
+//     printf("Ancho: %d\n", game->width);
+//     printf("Altura: %d\n", game->height);
+//     printf("Pos_X: %d\n", game->character_x);
+//     printf("Pos_y: %d\n", game->character_y);
 
-    // Implementa la lógica para verificar si el mapa está rodeado por unos
-    if (ft_borders(game->map, game)) {
-        printf("El mapa está rodeado por unos.\n");
-    } else {
-        printf("El mapa no está rodeado por unos.\n");
-    }
-    // Implementa la lógica para verificar si el mapa tiene todos los caracteres necesarios
-    if (ft_objects(game->map, game)) {
-        printf("El mapa tiene todos los caracteres necesarios.\n");
-    } else {
-        printf("El mapa no tiene todos los caracteres necesarios.\n");
-    }
+//     // Implementa la lógica para verificar si el mapa está rodeado por unos
+//     if (ft_borders(game->map, game)) {
+//         printf("El mapa está rodeado por unos.\n");
+//     } else {
+//         printf("El mapa no está rodeado por unos.\n");
+//     }
+//     // Implementa la lógica para verificar si el mapa tiene todos los caracteres necesarios
+//     if (ft_objects(game->map, game)) {
+//         printf("El mapa tiene todos los caracteres necesarios.\n");
+//     } else {
+//         printf("El mapa no tiene todos los caracteres necesarios.\n");
+//     }
 
-    // Implementa la lógica para verificar si el mapa tiene caracteres incorrectos
-    if (ft_caracteres(game->map, game)) {
-        printf("El mapa no tiene caracteres incorrectos.\n");
-    } else {
-        printf("El mapa tiene caracteres incorrectos.\n");
-    }
+//     // Implementa la lógica para verificar si el mapa tiene caracteres incorrectos
+//     if (ft_caracteres(game->map, game)) {
+//         printf("El mapa no tiene caracteres incorrectos.\n");
+//     } else {
+//         printf("El mapa tiene caracteres incorrectos.\n");
+//     }
 
-    // Implementa la lógica para verificar si el flood fill alcanza todos los objetivos
-    if (check_floodfill(game, file)) {
-        printf("El flood fill alcanza todos los objetivos.\n");
-    } else {
-        printf("El flood fill no alcanza todos los objetivos.\n");
-    }
+//     // Implementa la lógica para verificar si el flood fill alcanza todos los objetivos
+//     if (check_floodfill(game, file)) {
+//         printf("El flood fill alcanza todos los objetivos.\n");
+//     } else {
+//         printf("El flood fill no alcanza todos los objetivos.\n");
+//     }
 
-    close(file);
-    return 0;
-}
+//     close(file);
+//     return 0;
+// }

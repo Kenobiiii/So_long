@@ -11,7 +11,7 @@ INCLUDES	= -I ./libft -I/opt/X11/include -IMLX42
 MLX42 = ./MLX42
 LIBFT		= libft/libft.a
 LIBS		= -L./libft -lft
-//MLX_FLAGS = -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
+MLX_FLAGS = -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
 
 NAME = so_long
 
@@ -25,7 +25,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Compiling objects...$(RESET)"
 	@$(MAKE) -C ./libft
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
 	@echo "$(GREEN)Executable created: $(NAME)$(RESET)"
 
 %.o: %.c

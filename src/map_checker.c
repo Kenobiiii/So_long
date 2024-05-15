@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/13 12:40:19 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:49:03 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,22 @@ void	ft_character_pos(char **matrix, t_res *structa)
 	int	j;
 
 	i = 0;
-	structa->character_y = 0;
-	structa->character_x = 0;
+	// structa->character_y = 0;
+	// structa->character_x = 0;
 	while (i < structa->height)
 	{
 		j = 0;
 		while (j < structa->width)
 		{
-			if (matrix[i][j] == 32)
+			if (matrix[i][j] == PLAYER)
 			{
 				structa->character_y = i;
 				structa->character_x = j;
+				return ;
 			}
 			j++;
 		}
 		i++;
-	}
-}
-
-void	ft_empty(char **matrix)
-{
-	if (matrix[0][0] == '\0')
-	{
-		perror("La matriz está vacía");
-		exit(EXIT_FAILURE);
 	}
 }
 
@@ -78,12 +70,12 @@ int	ft_objects(char **matrix, t_res *structa)
 			else if (matrix[i][j] == COLLECT)
 				structa->chest++;
 			else if (matrix[i][j] == MAP_EXIT)
-				structa->exit++;
+				structa->exit_c++;
 			j++;
 		}
 		i++;
 	}
-	if (structa->character == 1 && structa->exit == 1 && structa->chest >= 1)
+	if (structa->character == 1 && structa->exit_c == 1 && structa->chest >= 1)
 		return (1);
 	else
 		return (0);
@@ -92,8 +84,8 @@ int	ft_objects(char **matrix, t_res *structa)
 void	ft_map_checker(int file, t_res	*game)
 {
 	read_file(file, game);
+	print_matrix(game->map, game);
 	ft_character_pos(game->map, game);
-	ft_empty(game->map);
 	if (!ft_borders(game->map, game))
 	{
 		perror("La matriz no está rodeada por unos o no es rectangular");
@@ -118,7 +110,8 @@ void	ft_map_checker(int file, t_res	*game)
 
 int	main(int ac, char **av)
 {
-	int	file;
+	int		file;
+	char	*buffer[1];
 	t_res	*game;
 
 	game = init_game();
@@ -126,6 +119,11 @@ int	main(int ac, char **av)
 	{
 		ft_ber(av[1]);
 		file = open(av[1], O_RDONLY);
+		// if (read(file, buffer, sizeof(buffer)) == 0)
+		// {
+		// 	perror ("El archivo está vacío");
+		// 	exit(EXIT_FAILURE);
+		// }
 		ft_map_checker(file, game);
 		close (file);
 	}

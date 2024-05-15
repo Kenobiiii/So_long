@@ -5,13 +5,13 @@ CC = gcc
 CCFLAGS = -Wall -Wextra -Werror
 
 USER		= paromero
-SRCS		= src/map.c src/map_checker.c src/ft_free.c src/main.c
+SRCS		= src/map.c src/map_checker.c src/main.c src/ft_free.c
 OBJS		= $(SRCS:.c=.o)
 INCLUDES	= -I ./libft -I/opt/X11/include -IMLX42
 MLX42 = ./MLX42
 LIBFT		= libft/libft.a
 LIBS		= -L./libft -lft
-//MLX_FLAGS = -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
+MLX_FLAGS = -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
 
 NAME = so_long
 
@@ -25,6 +25,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "$(GREEN)Compiling objects...$(RESET)"
 	@$(MAKE) -C ./libft
+	@$(MAKE) -C $(MLX42)
 	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)Executable created: $(NAME)$(RESET)"
 

@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/13 12:39:03 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:37:02 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@
 # define MAX_ROWS 100
 # define MAX_COLS 100
 # define IMG			64
-# define WALL				1
-# define FLOOR 				0
-# define COLLECT  			19
-# define PLAYER				32
-# define MAP_EXIT 		 	21
+# define WALL				'1'
+# define FLOOR 				'0'
+# define COLLECT  			'C'
+# define PLAYER				'P'
+# define MAP_EXIT 		 	'E'
+# define VISITED			'V'
 
 typedef struct s_res
 {
@@ -36,7 +37,7 @@ typedef struct s_res
 	int				width;
 	int				height;
 	int				chest;
-	int				exit;
+	int				exit_c;
 	int				character;
 	int				character_y;
 	int				character_x;
@@ -61,7 +62,7 @@ void		floodfill(t_res *map_dup, int x, int y);
 void		ft_ber(char	*str);
 void		ft_character_pos(char **matrix, t_res *structa);
 void		ft_empty(char **matrix);
-
+void		print_matrix(char **matrix, t_res *dimensions);
 
 //int
 int			ft_borders(char **matrix, t_res *dimensions);
@@ -71,6 +72,6 @@ int			ft_caracteres(char **matrix, t_res *structa);
 int			check_floodfill(t_res *game, int fd);
 
 //structs
-t_res	*init_game(void);
+t_res		*init_game(void);
 
 #endif

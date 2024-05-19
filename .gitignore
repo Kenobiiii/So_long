@@ -1,0 +1,10 @@
+# ignora archivos sistema MAC
+.DS_store
+
+# ignora la carpeta MLX42 (Ejecutables)
+MLX42
+
+# ignora los ejecutables
+*.out
+*.o
+*.a

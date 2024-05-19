@@ -20,6 +20,11 @@ void	read_file(int fd, t_res *game)
 	game->height = 0;
 	game->map = malloc(MAX_ROWS * sizeof(char *));
 	line = get_next_line(fd);
+	if (!line)
+	{
+		perror("El archivo esta vacío");
+		exit(EXIT_FAILURE);
+	}
 	while (game->height < MAX_ROWS && line != NULL)
 	{
 		len = ft_strlen(line);

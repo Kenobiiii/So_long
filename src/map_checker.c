@@ -119,19 +119,19 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		ft_ber(av[1]);
-		file = open(av[1], O_RDONLY);
 		file2 = open(av[1], O_RDONLY);
-		if (read(file, buffer, sizeof(buffer)) == 0)
-		{
-			perror ("El archivo está vacío");
-			exit(EXIT_FAILURE);
-		}
-		close (file);
 		ft_map_checker(file2, game);
+		close (file2);
+		file = open(av[1], O_RDONLY);
+		// if (!check_floodfill(game, file2))
+		// {
+		// 	perror("La salida no está disponible");
+		// 	exit(EXIT_FAILURE);
+		// }
 	}
 	else
 		ft_printf("Uso: ./so_long mapa.ber\n");
 	free (game);
-	close (file2);
+	close (file);
 	return (0);
 }

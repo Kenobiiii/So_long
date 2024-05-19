@@ -81,9 +81,9 @@ int	ft_objects(char **matrix, t_res *structa)
 		return (0);
 }
 
-void	ft_map_checker(int file, t_res	*game)
+void	ft_map_checker(int	fd, t_res	*game)
 {
-	read_file(file, game);
+	read_file(fd, game);
 	print_matrix(game->map, game);
 	ft_character_pos(game->map, game);
 	if (!ft_borders(game->map, game))
@@ -101,7 +101,7 @@ void	ft_map_checker(int file, t_res	*game)
 		perror("La matriz tiene caracteres incorrectos");
 		exit(EXIT_FAILURE);
 	}
-	if (!check_floodfill(game, file))
+	if (!check_floodfill(game, fd))
 	{
 		perror("La salida no está disponible");
 		exit(EXIT_FAILURE);
@@ -111,6 +111,7 @@ void	ft_map_checker(int file, t_res	*game)
 int	main(int ac, char **av)
 {
 	int		file;
+	int		file2;
 	char	*buffer[1];
 	t_res	*game;
 
@@ -119,16 +120,18 @@ int	main(int ac, char **av)
 	{
 		ft_ber(av[1]);
 		file = open(av[1], O_RDONLY);
-		// if (read(file, buffer, sizeof(buffer)) == 0)
-		// {
-		// 	perror ("El archivo está vacío");
-		// 	exit(EXIT_FAILURE);
-		// }
-		ft_map_checker(file, game);
+		file2 = open(av[1], O_RDONLY);
+		if (read(file, buffer, sizeof(buffer)) == 0)
+		{
+			perror ("El archivo está vacío");
+			exit(EXIT_FAILURE);
+		}
 		close (file);
+		ft_map_checker(file2, game);
 	}
 	else
 		ft_printf("Uso: ./so_long mapa.ber\n");
 	free (game);
+	close (file2);
 	return (0);
 }

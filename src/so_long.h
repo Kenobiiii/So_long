@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/20 12:09:00 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:04:49 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void		ft_ber(char	*str);
 void		ft_character_pos(char **matrix, t_res *structa);
 void		ft_empty(char **matrix);
 void		print_matrix(char **matrix, t_res *dimensions);
+void		ft_map_checker(char **av, t_res	*game);
 
 //int
 int			ft_borders(char **matrix, t_res *dimensions);

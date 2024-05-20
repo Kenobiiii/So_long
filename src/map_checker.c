@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/20 17:48:33 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/20 20:03:34 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,18 @@ void	ft_map_checker(char **av, t_res	*game)
 	}
 }
 
-int	main(int ac, char **av)
-{
-	int		file;
-	int		file2;
-	char	*buffer[1];
-	t_res	*game;
+// int	main(int ac, char **av)
+// {
+// 	t_res	*game;
 
-	game = init_game();
-	if (ac == 2)
-	{
-		ft_ber(av[1]);
-		ft_map_checker(av, game);
-	}
-	else
-		ft_printf("Uso: ./so_long mapa.ber\n");
-	free (game);
-	close (file);
-	return (0);
-}
+// 	game = init_game();
+// 	if (ac == 2)
+// 	{
+// 		ft_ber(av[1]);
+// 		ft_map_checker(av, game);
+// 	}
+// 	else
+// 		ft_printf("Uso: ./so_long mapa.ber\n");
+// 	free (game);
+// 	return (0);
+// }

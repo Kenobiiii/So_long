@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/15 11:37:02 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/20 12:09:00 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 typedef struct s_res
 {
 	char			**map;
+	int				fd;
 	int				width;
 	int				height;
 	int				chest;
@@ -69,7 +70,7 @@ int			ft_borders(char **matrix, t_res *dimensions);
 int			ft_rectangule(char **matrix, t_res *structa);
 int			ft_objects(char **matrix, t_res *structa);
 int			ft_caracteres(char **matrix, t_res *structa);
-int			check_floodfill(t_res *game, int fd);
+int			check_floodfill(t_res *game, char **av);
 
 //structs
 t_res		*init_game(void);

@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:43:16 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/15 11:49:14 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:47:17 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,54 +105,22 @@ void	floodfill(t_res *map_dup, int x, int y)
 	floodfill(map_dup, x, y - 1);
 }
 
-// int	check_floodfill(t_res *game, int fd)
-// {
-// 	t_res	*map_dup;
-
-// 	map_dup = init_game();
-// 	read_file(fd, map_dup);
-// 	ft_character_pos(map_dup->map, map_dup);
-// 	floodfill(map_dup, map_dup->character_x, map_dup->character_y);
-// 	if (map_dup->chest == game->chest && map_dup->exit_c == 1)
-// 	{
-// 		free_all(map_dup);
-// 		return (1);
-// 	}
-// 	free_all(map_dup);
-// 	return (0);
-// }
-
-int	check_floodfill(t_res *game, int fd)
+int	check_floodfill(t_res *game, char **av)
 {
-    t_res	*map_dup;
+	t_res	*map_dup;
 
-    map_dup = init_game();
-    read_file(fd, map_dup);
-	print_matrix(map_dup->map, map_dup);
-    ft_character_pos(map_dup->map, map_dup);
-    floodfill(map_dup, map_dup->character_x, map_dup->character_y);
-
-    // Debugging print statements
-    printf("Chests found: %d (expected: %d)\n", map_dup->chest, game->chest);
-    printf("Exits found: %d (expected: 1)\n", map_dup->exit_c);
-
-    if (map_dup->chest == game->chest && map_dup->exit_c == 1)
-    {
-        free_all(map_dup);
-        return (1);
-    }
-    free_all(map_dup);
-    return (0);
-}
-void	print_matrix(char **matrix, t_res *dimensions)
-{
-	ft_printf("Matriz:\n");
-	for (int i = 0; i < dimensions->height; i++)
+	map_dup = init_game();
+	map_dup->fd = open(av[1], O_RDONLY);
+	read_file(map_dup->fd, map_dup);
+	ft_character_pos(map_dup->map, map_dup);
+	floodfill(map_dup, map_dup->character_x, map_dup->character_y);
+	if (map_dup->chest == game->chest && map_dup->exit_c == 1)
 	{
-		for (int j = 0; j < dimensions->width; j++)
-		{
-			printf("%c ", matrix[i][j]);
-		}
-		printf("\n");
+		close (map_dup->fd);
+		free_all(map_dup);
+		return (1);
 	}
+	close (map_dup->fd);
+	free_all(map_dup);
+	return (0);
 }

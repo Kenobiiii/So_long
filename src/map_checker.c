@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/15 11:49:03 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:48:33 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ void	ft_character_pos(char **matrix, t_res *structa)
 	int	j;
 
 	i = 0;
-	// structa->character_y = 0;
-	// structa->character_x = 0;
 	while (i < structa->height)
 	{
 		j = 0;
@@ -81,10 +79,11 @@ int	ft_objects(char **matrix, t_res *structa)
 		return (0);
 }
 
-void	ft_map_checker(int	fd, t_res	*game)
+void	ft_map_checker(char **av, t_res	*game)
 {
-	read_file(fd, game);
-	print_matrix(game->map, game);
+	game->fd = open(av[1], O_RDONLY);
+	read_file(game->fd, game);
+	close (game->fd);
 	ft_character_pos(game->map, game);
 	if (!ft_borders(game->map, game))
 	{
@@ -101,7 +100,7 @@ void	ft_map_checker(int	fd, t_res	*game)
 		perror("La matriz tiene caracteres incorrectos");
 		exit(EXIT_FAILURE);
 	}
-	if (!check_floodfill(game, fd))
+	if (!check_floodfill(game, av))
 	{
 		perror("La salida no está disponible");
 		exit(EXIT_FAILURE);
@@ -119,15 +118,7 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		ft_ber(av[1]);
-		file2 = open(av[1], O_RDONLY);
-		ft_map_checker(file2, game);
-		close (file2);
-		file = open(av[1], O_RDONLY);
-		// if (!check_floodfill(game, file2))
-		// {
-		// 	perror("La salida no está disponible");
-		// 	exit(EXIT_FAILURE);
-		// }
+		ft_map_checker(av, game);
 	}
 	else
 		ft_printf("Uso: ./so_long mapa.ber\n");

@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 09:22:44 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/20 17:48:17 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/21 19:11:26 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_matriz(char **matriz, t_res *game)
 	int	i;
 
 	i = 0;
-	while (i < game->height)
+	while (matriz[i])
 	{
 		free(matriz[i]);
 		i++;
@@ -25,18 +25,38 @@ void	free_matriz(char **matriz, t_res *game)
 	free(matriz);
 }
 
+void	free_map_txt(t_res *game)
+{
+	if (game->collect_t)
+		mlx_delete_texture(game->collect_t);
+	if (game->floor_t)
+		mlx_delete_texture(game->floor_t);
+	if (game->wall_i)
+		mlx_delete_texture(game->wall_t);
+	if (game->player_t)
+		mlx_delete_texture(game->player_t);
+	if (game->exit_t)
+		mlx_delete_texture(game->exit_t);
+	if (game->exit_i)
+		mlx_delete_image(game->mlx, game->exit_i);
+	if (game->wall_i)
+		mlx_delete_image(game->mlx, game->exit_i);
+	if (game->floor_i)
+		mlx_delete_image(game->mlx, game->exit_i);
+	if (game->collect_i)
+		mlx_delete_image(game->mlx, game->exit_i);
+	if (game->player_i)
+		mlx_delete_image(game->mlx, game->player_i);
+}
+
 void	free_all(t_res	*game)
 {
 	if (game)
 	{
 		if (game->map)
-		{
 			free_matriz(game->map, game);
-			game->map = NULL;
-		}
-		// if (game)
-		// 	free_map_txt(game);
+		if (game)
+			free_map_txt(game);
 		free(game);
-		game = NULL;
 	}
 }

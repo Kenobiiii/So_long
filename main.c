@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 19:56:32 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/09 13:04:07 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:48:16 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int32_t	main(void)
 		puts(mlx_strerror(mlx_errno));
 		return (EXIT_FAILURE);
 	}
-	texture = mlx_load_png("./sprites/Jorge.png");
+	texture = mlx_load_png("./sprites/player.png");
 	if (texture == NULL)
 	{
 		mlx_close_window(mlx);

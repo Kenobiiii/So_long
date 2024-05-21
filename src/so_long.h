@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/20 20:04:49 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:58:26 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@
 # define MAP_EXIT 		 	'E'
 # define VISITED			'V'
 
+typedef enum e_move
+{
+	UP = 1,
+	DOWN = 2,
+	LEFT = 3,
+	RIGHT = 4
+}	t_move;
 typedef struct s_res
 {
 	char			**map;
@@ -40,6 +47,7 @@ typedef struct s_res
 	int				chest;
 	int				exit_c;
 	int				character;
+	int				move_count;
 	int				character_y;
 	int				character_x;
 	mlx_t			*mlx;
@@ -65,6 +73,10 @@ void		ft_character_pos(char **matrix, t_res *structa);
 void		ft_empty(char **matrix);
 void		print_matrix(char **matrix, t_res *dimensions);
 void		ft_map_checker(char **av, t_res	*game);
+void		load_imgs(t_res *game);
+void		ft_hook(mlx_key_data_t keydata, void *game);
+void		load_player(t_res *game);
+void		ft_png_to_txt(t_res *juego);
 
 //int
 int			ft_borders(char **matrix, t_res *dimensions);

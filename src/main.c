@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 09:09:51 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/21 17:46:28 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:51:18 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int main(int ac, char **av)
 		perror("Memoria mal alocada");
 	if (ac != 2)
 	{
-		perror("Uso: ./so_long mapa.ber");
+		ft_printf("Uso: ./so_long mapa.ber.\n");
 		exit(EXIT_FAILURE);
 	}
 	ft_ber(av[1]);

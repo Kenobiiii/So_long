@@ -2,7 +2,7 @@ LIB = ar rcs
 RM = rm -f
 
 CC = gcc
-CCFLAGS = -Wall -Wextra -Werror
+CCFLAGS = -g -Wall -Wextra -Werror
 
 USER		= paromero
 SRCS		= src/map.c src/map_checker.c src/main.c src/ft_free.c src/grafics.c src/key_hook.c

@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 09:09:51 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/21 19:04:32 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:56:19 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_res	*init_game(void)
 	return (game);
 }
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	t_res *game;
+	t_res	*game;
 
 	game = init_game();
 	if (!game)
@@ -41,7 +41,5 @@ int main(int ac, char **av)
 	load_player(game);
 	mlx_key_hook(game->mlx, &ft_hook, game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
-	free (game);
 	return (0);
 }

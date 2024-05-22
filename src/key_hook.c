@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:55:59 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/21 19:05:36 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:57:38 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	check_move(t_res *game, int dir, int y, int x)
 		if (game->map[y][x] != WALL)
 		{
 			if (game->map[y][x] == COLLECT)
-	        {
+			{
 				game->map[y][x] = FLOOR;
 				game->chest--;
 				if (mlx_image_to_window(game->mlx,
@@ -64,7 +64,9 @@ void	check_exit_move(t_res *game, int dir)
 	{
 		move_player(game, dir);
 		perror("You win. All collectible reached!!");
+		mlx_terminate(game->mlx);
 		free_all(game);
+		exit(EXIT_SUCCESS);
 	}
 }
 

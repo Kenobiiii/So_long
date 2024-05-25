@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 09:22:44 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/25 12:11:25 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:17:07 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	free_map_txt(t_res *game)
 	if (game->exit_i)
 		mlx_delete_image(game->mlx, game->exit_i);
 	if (game->wall_i)
-		mlx_delete_image(game->mlx, game->exit_i);
+		mlx_delete_image(game->mlx, game->wall_i);
 	if (game->floor_i)
-		mlx_delete_image(game->mlx, game->exit_i);
+		mlx_delete_image(game->mlx, game->floor_i);
 	if (game->collect_i)
-		mlx_delete_image(game->mlx, game->exit_i);
+		mlx_delete_image(game->mlx, game->collect_i);
 	if (game->player_i)
 		mlx_delete_image(game->mlx, game->player_i);
 }
@@ -57,6 +57,6 @@ void	free_all(t_res	*game)
 			free_matriz(game->map);
 		if (game)
 			free_map_txt(game);
-		free(game);
+		//free(game);
 	}
 }

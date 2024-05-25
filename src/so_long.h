@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/21 18:58:26 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:11:58 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_res
 //void
 void		read_file(int fd, t_res *dimensions);
 void		free_all(t_res	*juego);
-void		free_matriz(char **matriz, t_res	*game);
+void		free_matriz(char **matriz);
 void		floodfill(t_res *map_dup, int x, int y);
 void		ft_ber(char	*str);
 void		ft_character_pos(char **matrix, t_res *structa);

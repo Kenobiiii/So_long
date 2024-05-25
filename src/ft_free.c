@@ -6,13 +6,13 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 09:22:44 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/21 19:11:26 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:11:25 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_matriz(char **matriz, t_res *game)
+void	free_matriz(char **matriz)
 {
 	int	i;
 
@@ -54,7 +54,7 @@ void	free_all(t_res	*game)
 	if (game)
 	{
 		if (game->map)
-			free_matriz(game->map, game);
+			free_matriz(game->map);
 		if (game)
 			free_map_txt(game);
 		free(game);

@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/25 12:11:58 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:24:15 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_res
 
 //void
 void		read_file(int fd, t_res *dimensions);
-void		free_all(t_res	*juego);
+void		free_all(t_res	*game);
 void		free_matriz(char **matriz);
 void		floodfill(t_res *map_dup, int x, int y);
 void		ft_ber(char	*str);
@@ -76,7 +76,7 @@ void		ft_map_checker(char **av, t_res	*game);
 void		load_imgs(t_res *game);
 void		ft_hook(mlx_key_data_t keydata, void *game);
 void		load_player(t_res *game);
-void		ft_png_to_txt(t_res *juego);
+void		ft_png_to_txt(t_res *game);
 
 //int
 int			ft_borders(char **matrix, t_res *dimensions);

@@ -28,14 +28,14 @@ $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
 	@$(MAKE) -C $(MLX42)
 	# MAC
-	# @$(CC) $(CFLAGS) $(OBJS) $(LIBS) # $(MAC_MLX_FLAGS) -o $(NAME)
+	# @$(CC) $(CCFLAGS) $(OBJS) $(LIBS) # $(MAC_MLX_FLAGS) -o $(NAME)
 	# LINUX
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(LNX_MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CCFLAGS) $(OBJS) $(LIBS) $(LNX_MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)Executable created: $(NAME)$(RESET)"
 
 %.o: %.c
 	@echo "$(GREEN)Compiling $<...$(RESET)"
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$(GREEN)$< compiled!$(RESET)"
 
 clean:

@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 09:22:44 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/25 13:17:07 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/25 13:28:37 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	free_all(t_res	*game)
 			free_matriz(game->map);
 		if (game)
 			free_map_txt(game);
-		//free(game);
+		free(game);
 	}
 }

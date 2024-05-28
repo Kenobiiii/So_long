@@ -1,8 +1,7 @@
 LIB = ar rcs
 RM = rm -f
 
-CC = gcc
-CCFLAGS = -Wall -Wextra -Werror
+CC = clang
 
 NAME = libft.a
 SRC =	ft_memset.c ft_bzero.c ft_strlen.c ft_atoi.c ft_isdigit.c ft_isalpha.c\
@@ -33,7 +32,7 @@ $(NAME): $(OBJ) $(INCLUDE) $(BONUS_OBJS)
 
 %.o: %.c
 	@echo "$(GREEN)Compiling $<...$(RESET)"
-	@$(CC) $(CCFLAGS) -c -o $@ $<
+	@$(CC) -c -o $@ $<
 	@echo "$(GREEN)$< compiled!$(RESET)"
 
 clean:

@@ -1,8 +1,7 @@
 LIB = ar rcs
 RM = rm -f
 
-CC = gcc
-CCFLAGS = -g -Wall -Wextra -Werror
+CC = clang
 
 USER		= paromero
 SRCS		= src/map.c src/map_checker.c src/main.c src/ft_free.c src/grafics.c src/key_hook.c
@@ -28,14 +27,14 @@ $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
 	@$(MAKE) -C $(MLX42)
 	# MAC
-	# @$(CC) $(CCFLAGS) $(OBJS) $(LIBS) # $(MAC_MLX_FLAGS) -o $(NAME)
+	# @$(CC) $(CFLAGS) $(OBJS) $(LIBS) # $(MAC_MLX_FLAGS) -o $(NAME)
 	# LINUX
-	@$(CC) $(CCFLAGS) $(OBJS) $(LIBS) $(LNX_MLX_FLAGS) -o $(NAME)
+	@$(CC) $(OBJS) $(LIBS) $(LNX_MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)Executable created: $(NAME)$(RESET)"
 
 %.o: %.c
 	@echo "$(GREEN)Compiling $<...$(RESET)"
-	@$(CC) $(CCFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	@echo "$(GREEN)$< compiled!$(RESET)"
 
 clean:

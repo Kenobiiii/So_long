@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:43:16 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/20 17:47:17 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:58:38 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,20 +107,19 @@ void	floodfill(t_res *map_dup, int x, int y)
 
 int	check_floodfill(t_res *game, char **av)
 {
-	t_res	*map_dup;
+	static t_res	map_dup;
 
-	map_dup = init_game();
-	map_dup->fd = open(av[1], O_RDONLY);
-	read_file(map_dup->fd, map_dup);
-	ft_character_pos(map_dup->map, map_dup);
-	floodfill(map_dup, map_dup->character_x, map_dup->character_y);
-	if (map_dup->chest == game->chest && map_dup->exit_c == 1)
+	map_dup.fd = open(av[1], O_RDONLY);
+	read_file(map_dup.fd, &map_dup);
+	ft_character_pos(map_dup.map, &map_dup);
+	floodfill(&map_dup, map_dup.character_x, map_dup.character_y);
+	if (map_dup.chest == game->chest && map_dup.exit_c == 1)
 	{
-		close (map_dup->fd);
-		free_all(map_dup);
+		close (map_dup.fd);
+		free_all(&map_dup);
 		return (1);
 	}
-	close (map_dup->fd);
-	free_all(map_dup);
+	close (map_dup.fd);
+	free_all(&map_dup);
 	return (0);
 }

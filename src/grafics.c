@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:29:13 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/25 12:24:15 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:10:08 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	ft_png_to_txt(t_res *game)
 {
 	game->mlx = mlx_init(game->width * 64,
 			game->height * 64, "so_long", false);
-	game->floor_t = mlx_load_png("sprites/floor.png");
-	game->wall_t = mlx_load_png("sprites/wall.png");
-	game->exit_t = mlx_load_png("sprites/exit.png");
-	game->player_t = mlx_load_png("sprites/player.png");
-	game->collect_t = mlx_load_png("sprites/colective.png");
+	game->floor_t = mlx_load_png("textures/floor.png");
+	game->wall_t = mlx_load_png("textures/wall.png");
+	game->exit_t = mlx_load_png("textures/exit.png");
+	game->player_t = mlx_load_png("textures/player.png");
+	game->collect_t = mlx_load_png("textures/colective.png");
 	if (!game->floor_t || !game->wall_t
 		|| !game->exit_t || !game->player_t || !game->collect_t)
 	{
@@ -52,7 +52,7 @@ void	load_imgs(t_res *game)
 		while (x < game->width)
 		{
 			if (game->map[y][x] == FLOOR || game->map[y][x] == COLLECT
-				|| game->map[y][x] == PLAYER)
+				|| game->map[y][x] == PLAYER || game->map[y][x] == MAP_EXIT)
 				mlx_image_to_window(game->mlx, game->floor_i, x * IMG, y * IMG);
 			if (game->map[y][x] == WALL)
 				mlx_image_to_window(game->mlx, game->wall_i, x * IMG, y * IMG);

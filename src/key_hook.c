@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:55:59 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/23 18:53:43 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:59:00 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	reload_player(t_res *game)
 {
 	mlx_delete_texture(game->player_t);
 	mlx_delete_image(game->mlx, game->player_i);
-	game->player_t = mlx_load_png("./sprites/player.png");
+	game->player_t = mlx_load_png("./textures/player.png");
 	game->player_i = mlx_texture_to_image(game->mlx, game->player_t);
 	if (!game->player_i)
 		return ;
@@ -105,6 +105,7 @@ void	ft_hook(mlx_key_data_t keydata, void *game)
 		check_move(temp, LEFT, temp->character_y, temp->character_x - 1);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
+		mlx_terminate(temp->mlx);
 		free_all(temp);
 		exit (0);
 	}

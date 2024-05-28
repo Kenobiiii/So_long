@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/20 20:03:34 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/28 10:21:01 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	ft_ber(char	*str)
 {
-	char	*file;
+	int		len;
+	char	*extension;
 
-	file = ft_strrchr(str, '.');
-	if (file == 0)
+	len = ft_strlen(str);
+	if (len < 4)
 	{
-		perror("El arhcivo no tiene extensión");
+		perror("El archivo no tiene extensión");
 		exit(EXIT_FAILURE);
 	}
-	if (ft_strncmp(file, ".ber", 4) != 0)
+	extension = &str[len - 4];
+	if (ft_strncmp(extension, ".ber", 4) != 0)
 	{
 		perror("El archivo no es .ber");
 		exit(EXIT_FAILURE);

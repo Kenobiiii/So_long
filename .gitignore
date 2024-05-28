@@ -1,6 +1,9 @@
 # ignora archivos sistema MAC
 .DS_store
 
+#ignora el vscode
+.vscode
+
 # ignora la carpeta MLX42 (Ejecutables)
 MLX42
 

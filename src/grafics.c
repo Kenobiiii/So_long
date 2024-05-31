@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/11 19:29:13 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/28 10:10:08 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:21:57 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_png_to_txt(t_res *game)
 	if (!game->floor_t || !game->wall_t
 		|| !game->exit_t || !game->player_t || !game->collect_t)
 	{
-		perror("Fallo al cargar las texturas");
+		perror("Error:\nFallo al cargar las texturas");
 		exit(EXIT_FAILURE);
 	}
 	game->floor_i = mlx_texture_to_image(game->mlx, game->floor_t);
@@ -35,7 +35,7 @@ void	ft_png_to_txt(t_res *game)
 	if (!game->floor_i || !game->wall_i
 		|| !game->exit_i || !game->player_i || !game->collect_i)
 	{
-		perror("Fallo al cargar las imágenes");
+		perror("Error:\nFallo al cargar las imágenes");
 		exit(EXIT_FAILURE);
 	}
 }

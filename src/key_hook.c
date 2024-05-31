@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:55:59 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/28 10:59:00 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:21:57 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	check_move(t_res *game, int dir, int y, int x)
 				game->chest--;
 				if (mlx_image_to_window(game->mlx,
 						game->floor_i, x * IMG, y * IMG) < 0)
-					perror("Error rendering floor.");
+					perror("Error:\nError rendering floor.");
 				if (game->chest == 0)
 					game->exit_c = 1;
 				reload_player(game);

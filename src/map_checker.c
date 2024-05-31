@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/28 10:21:01 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:24:38 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ void	ft_ber(char	*str)
 	len = ft_strlen(str);
 	if (len < 4)
 	{
-		perror("El archivo no tiene extensión");
+		perror("Error:\nEl archivo no tiene extensión");
 		exit(EXIT_FAILURE);
 	}
 	extension = &str[len - 4];
 	if (ft_strncmp(extension, ".ber", 4) != 0)
 	{
-		perror("El archivo no es .ber");
+		perror("Error:\nEl archivo no es .ber");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -89,38 +89,22 @@ void	ft_map_checker(char **av, t_res	*game)
 	ft_character_pos(game->map, game);
 	if (!ft_borders(game->map, game))
 	{
-		perror("La matriz no está rodeada por unos o no es rectangular");
+		perror("Error:\nLa matriz no está rodeada por unos o no es rectangular");
 		exit(EXIT_FAILURE);
 	}
 	if (!ft_objects(game->map, game))
 	{
-		perror("La matriz no tiene todos los caracteres");
+		perror("Error:\nLa matriz no tiene todos los caracteres");
 		exit(EXIT_FAILURE);
 	}
 	if (!ft_caracteres(game->map, game))
 	{
-		perror("La matriz tiene caracteres incorrectos");
+		perror("Error:\nLa matriz tiene caracteres incorrectos");
 		exit(EXIT_FAILURE);
 	}
 	if (!check_floodfill(game, av))
 	{
-		perror("La salida no está disponible");
+		perror("Error:\nLa salida no está disponible");
 		exit(EXIT_FAILURE);
 	}
 }
-
-// int	main(int ac, char **av)
-// {
-// 	t_res	*game;
-
-// 	game = init_game();
-// 	if (ac == 2)
-// 	{
-// 		ft_ber(av[1]);
-// 		ft_map_checker(av, game);
-// 	}
-// 	else
-// 		ft_printf("Uso: ./so_long mapa.ber\n");
-// 	free (game);
-// 	return (0);
-// }

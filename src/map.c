@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:43:16 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/28 09:58:38 by paromero         ###   ########.fr       */
+/*   Updated: 2024/05/31 09:29:07 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	read_file(int fd, t_res *game)
 
 	game->height = 0;
 	game->map = malloc(MAX_ROWS * sizeof(char *));
+	if (game->map == NULL)
+		return;
 	line = get_next_line(fd);
 	if (!line)
 	{
-		perror("El archivo esta vacío");
+		perror("Error:\nEl archivo esta vacío");
 		exit(EXIT_FAILURE);
 	}
 	while (game->height < MAX_ROWS && line != NULL)
@@ -31,9 +33,7 @@ void	read_file(int fd, t_res *game)
 		game->width = len;
 		game->map[game->height] = malloc((len + 1) * sizeof(char));
 		if (game->map[game->height] == NULL)
-		{
 			return ;
-		}
 		ft_strlcpy(game->map[game->height], line, len + 1);
 		game->height++;
 		free(line);

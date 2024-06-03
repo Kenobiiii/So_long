@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/06/03 16:39:11 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:52:43 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void		error_line(t_res *game);
 
 //int
 int			ft_borders(char **matrix, t_res *dimensions);
-int			ft_rectangule(char **matrix, t_res *structa);
 int			ft_objects(char **matrix, t_res *structa);
 int			ft_caracteres(char **matrix, t_res *structa);
 int			check_floodfill(t_res *game, char **av);

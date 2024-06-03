@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 09:43:16 by paromero          #+#    #+#             */
-/*   Updated: 2024/06/03 09:42:15 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:43:18 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	read_file(int fd, t_res *game)
 	ft_memset(game->map, 0, MAX_ROWS * sizeof(char *));
 	line = get_next_line(fd);
 	if (!line)
-		error_line(game->map);
+		error_line(game);
 	while (game->height < MAX_ROWS && line != NULL)
 	{
 		len = ft_strlen(line);

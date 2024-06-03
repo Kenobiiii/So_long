@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 10:00:26 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/28 09:59:16 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:39:11 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		load_imgs(t_res *game);
 void		ft_hook(mlx_key_data_t keydata, void *game);
 void		load_player(t_res *game);
 void		ft_png_to_txt(t_res *game);
+void		error_line(t_res *game);
 
 //int
 int			ft_borders(char **matrix, t_res *dimensions);

@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/31 09:24:38 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/03 19:57:32 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,22 +89,22 @@ void	ft_map_checker(char **av, t_res	*game)
 	ft_character_pos(game->map, game);
 	if (!ft_borders(game->map, game))
 	{
-		perror("Error:\nLa matriz no está rodeada por unos o no es rectangular");
-		exit(EXIT_FAILURE);
-	}
-	if (!ft_objects(game->map, game))
-	{
-		perror("Error:\nLa matriz no tiene todos los caracteres");
-		exit(EXIT_FAILURE);
+		perror("Error: The map is not surrounded by ones");
+		exit(1);
 	}
 	if (!ft_caracteres(game->map, game))
 	{
-		perror("Error:\nLa matriz tiene caracteres incorrectos");
-		exit(EXIT_FAILURE);
+		perror("Error: The map has wrong chars");
+		exit(1);
+	}
+	if (!ft_objects(game->map, game))
+	{
+		perror("Error: The map doesn't have all chars");
+		exit(1);
 	}
 	if (!check_floodfill(game, av))
 	{
-		perror("Error:\nLa salida no está disponible");
-		exit(EXIT_FAILURE);
+		perror("Error: There is no exit");
+		exit(1);
 	}
 }

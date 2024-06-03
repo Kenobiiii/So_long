@@ -6,11 +6,18 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 09:09:51 by paromero          #+#    #+#             */
-/*   Updated: 2024/05/28 10:30:14 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:42:43 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	error_line(t_res *game)
+{
+	free(game);
+	perror("Error:\nEl archivo esta vacío");
+	exit(EXIT_FAILURE);
+}
 
 int	main(int ac, char **av)
 {

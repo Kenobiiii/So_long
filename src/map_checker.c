@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/06/04 09:38:21 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/04 10:02:47 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	ft_map_checker(char **av, t_res	*game)
 	}
 	if (!ft_objects(game->map, game))
 	{
-		perror("Error: The map doesn't have all chars");
+		perror("Error: The map doesn't have all chars or repeated");
 		exit(1);
 	}
 	if (!check_floodfill(game, av))

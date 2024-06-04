@@ -2,6 +2,7 @@ LIB = ar rcs
 RM = rm -f
 
 CC = clang
+CFLAGS = -Wall -Werror -Wextra
 
 USER		= paromero
 SRCS		= src/map.c src/map_checker.c src/main.c src/ft_free.c src/grafics.c src/key_hook.c
@@ -29,7 +30,7 @@ $(NAME): $(OBJS)
 	# MAC
 	# @$(CC) $(CFLAGS) $(OBJS) $(LIBS) # $(MAC_MLX_FLAGS) -o $(NAME)
 	# LINUX
-	@$(CC) $(OBJS) $(LIBS) $(LNX_MLX_FLAGS) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) $(LNX_MLX_FLAGS) -o $(NAME)
 	@echo "$(GREEN)Executable created: $(NAME)$(RESET)"
 
 %.o: %.c

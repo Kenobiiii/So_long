@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 12:44:52 by paromero          #+#    #+#             */
-/*   Updated: 2024/06/03 19:57:32 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/04 09:38:21 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_map_checker(char **av, t_res	*game)
 	game->fd = open(av[1], O_RDONLY);
 	read_file(game->fd, game);
 	close (game->fd);
+	ft_rectangule(av);
 	ft_character_pos(game->map, game);
 	if (!ft_borders(game->map, game))
 	{

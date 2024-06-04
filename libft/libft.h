@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 10:34:11 by paromero          #+#    #+#             */
-/*   Updated: 2024/04/26 10:21:38 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/04 09:51:43 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int		ft_putnbr(long long n);
 int		ft_puthex(uintptr_t n, int is_uppercase, int include_prefix);
 int		ft_format(char format, va_list arg);
 int		ft_printf(char	const	*format, ...);
-
 
 //size_t
 size_t	ft_strlen(const char *str);

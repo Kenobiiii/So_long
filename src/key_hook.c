@@ -6,7 +6,7 @@
 /*   By: paromero <paromero@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 17:55:59 by paromero          #+#    #+#             */
-/*   Updated: 2024/06/04 09:54:24 by paromero         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:34:28 by paromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	check_move(t_res *game, int dir, int y, int x)
 			else if (game->map[y][x] == MAP_EXIT)
 			{
 				check_exit_move(game, dir);
-				move_player(game, dir);
 			}
 			else
 				move_player(game, dir);
